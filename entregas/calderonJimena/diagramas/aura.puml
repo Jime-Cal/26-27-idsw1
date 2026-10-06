@@ -1,16 +1,46 @@
 @startuml
+title Modelo del dominio: Farmear aura
 
-class Persona
-class Aura
-class SesionDeFarmeo
-class Actividad
-class Recompensa
+skinparam classAttributeIconSize 0
 
-Persona "1" -- "1" Aura : posee
+class Persona {
+  +id: UUID
+  +nombre: String
+}
+
+class Aura {
+  +cantidad: int
+  +acumular(cantidad: int)
+}
+
+class SesionDeFarmeo {
+  +inicio: DateTime
+  +fin: DateTime
+}
+
+class Actividad {
+  +descripcion: String
+}
+
+class Recompensa {
+  +cantidad: int
+}
+
+Persona "1" *-- "1" Aura : administra
 Persona "1" -- "0..*" SesionDeFarmeo : realiza
 
-SesionDeFarmeo "1" -- "1..*" Actividad : incluye
-Actividad "1" -- "1" Recompensa : proporciona
-Recompensa -- Aura : aumenta
+SesionDeFarmeo "1" *-- "1..*" Actividad : registra
+Actividad "1" -- "0..*" Recompensa : genera
+Recompensa "1" --> "1" Aura : incrementa
+
+note right of Aura
+  La cantidad acumulada
+  no puede ser negativa.
+end note
+
+note bottom of SesionDeFarmeo
+  Una sesión contiene al menos
+  una actividad.
+end note
 
 @enduml
