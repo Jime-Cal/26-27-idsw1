@@ -4,8 +4,6 @@
 
 ![Diagrama de aura](../imagenes/aura.png)
 
-La fuente editable del diagrama se encuentra en [`aura.puml`](../diagramas/aura.puml).
-
 ## Glosario
 
 - **Persona:** quien realiza el farmeo.
