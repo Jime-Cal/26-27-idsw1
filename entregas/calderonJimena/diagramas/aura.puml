@@ -15,7 +15,14 @@ class Aura {
 
 class SesionDeFarmeo {
   +inicio: DateTime
-  +fin: DateTime
+  +fin: DateTime [0..1]
+  +estado: EstadoSesion
+  +finalizar(fin: DateTime)
+}
+
+enum EstadoSesion {
+  ACTIVA
+  FINALIZADA
 }
 
 class Actividad {
@@ -41,6 +48,11 @@ end note
 note bottom of SesionDeFarmeo
   Una sesión contiene al menos
   una actividad.
+end note
+
+note right of EstadoSesion
+  Una sesion nueva comienza como ACTIVA.
+  Al finalizarse, debe registrar su fecha fin.
 end note
 
 @enduml
