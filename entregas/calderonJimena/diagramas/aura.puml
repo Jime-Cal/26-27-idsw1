@@ -33,12 +33,12 @@ class Recompensa {
   +cantidad: int
 }
 
-Persona "1" *-- "1" Aura : administra
+Persona "1" -- "1" Aura : administra
 Persona "1" -- "0..*" SesionDeFarmeo : realiza
 
-SesionDeFarmeo "1" *-- "1..*" Actividad : registra
+SesionDeFarmeo "1" -- "1..*" Actividad : registra
 Actividad "1" -- "0..*" Recompensa : genera
-Recompensa "1" --> "1" Aura : incrementa
+Recompensa "1" -- "1" Aura : incrementa
 
 note right of Aura
   La cantidad acumulada
