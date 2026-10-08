@@ -10,7 +10,7 @@ class Persona {
 
 class Aura {
   +cantidad: int
-  +acumular(cantidad: int)
+  +acumular(recompensa: Recompensa)
 }
 
 class SesionDeFarmeo {
@@ -31,6 +31,8 @@ class Actividad {
 
 class Recompensa {
   +cantidad: int
+  +aplicada: Boolean
+  +aplicar()
 }
 
 Persona "1" -- "1" Aura : administra
@@ -43,6 +45,12 @@ Recompensa "1" -- "1" Aura : incrementa
 note right of Aura
   La cantidad acumulada
   no puede ser negativa.
+end note
+
+note right of Recompensa
+  La cantidad debe ser positiva.
+  Una recompensa solo puede
+  aplicarse una vez.
 end note
 
 note bottom of SesionDeFarmeo
